@@ -37,7 +37,7 @@ function moveNoButton(event) {
     originalNoPosition = { x: rect.left, y: rect.top };
   }
 
-  if (hoverCount < 3) {
+  if (hoverCount < 2) {
     // playful reposition logic
     const bounds = questionPage.getBoundingClientRect();
     noBtn.style.position = 'fixed';
