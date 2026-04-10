@@ -16,8 +16,8 @@ const sendBtn = document.getElementById('sendBtn');
 // Audio + Toggles
 const bgMusic = document.getElementById('bgMusic');
 const successMusic = document.getElementById('successMusic');
-bgMusic.volume = 0.2;       // 20% of full volume
-successMusic.volume = 0.2;  // 20% of full volume
+bgMusic.volume = 0.2;       // softer background music
+successMusic.volume = 0.2;  // softer success music
 
 const questionToggle = document.getElementById('questionToggle');
 const successToggle = document.getElementById('successToggle');
@@ -25,15 +25,6 @@ const successToggle = document.getElementById('successToggle');
 // --- NO button playful logic ---
 let hoverCount = 0;
 let originalNoPosition = null;
-
-function overlapsRect(rectA, rectB) {
-  return !(
-    rectA.right < rectB.left ||
-    rectA.left > rectB.right ||
-    rectA.bottom < rectB.top ||
-    rectA.top > rectB.bottom
-  );
-}
 
 function moveNoButton(event) {
   if (event) {
@@ -47,20 +38,25 @@ function moveNoButton(event) {
   }
 
   if (hoverCount < 3) {
+    // playful reposition logic
     const bounds = questionPage.getBoundingClientRect();
-    const buttonRect = noBtn.getBoundingClientRect();
-    const yesRect = yesBtn.getBoundingClientRect();
-    const musicRect = questionToggle.getBoundingClientRect();
-
-    // simple reposition logic
     noBtn.style.position = 'fixed';
     noBtn.style.left = `${bounds.left + 50 + hoverCount * 30}px`;
     noBtn.style.top = `${bounds.top + 100 + hoverCount * 30}px`;
     noBtn.style.zIndex = '5';
     hoverCount++;
   } else {
+    // after 3 hovers, show message box
     document.getElementById('noMessage').classList.remove('hidden');
     noBtn.style.display = 'none';
+
+    // auto-focus textarea
+    setTimeout(() => {
+      document.getElementById('userMessage').focus();
+    }, 100);
+
+    // notify Telegram
+    notifyTelegram("User clicked NO ❌");
   }
 }
 
@@ -85,6 +81,9 @@ yesBtn.addEventListener('click', () => {
   successPage.classList.add('active');
   backgroundDiv.classList.remove('black-bg');
   overlayDiv.classList.remove('dark-overlay');
+
+  // notify Telegram
+  notifyTelegram("User clicked YES ✅");
 });
 
 // --- Toggle buttons ---
@@ -115,16 +114,17 @@ sendBtn.addEventListener('click', () => {
 
   if (message === '') {
     errorDiv.textContent = "Please write a message before sending!";
+    errorDiv.style.color = "red";
     errorDiv.classList.remove('hidden');
     return;
   }
 
-  // Clear error if valid
+  // clear error if valid
   errorDiv.textContent = "";
   errorDiv.classList.add('hidden');
 
-  const token = "8318492948:AAGzbVI7ZLJkLwyCwC1nYFfg29P4HGBEqyA";   // your bot token
-  const chatId = "6792798433";    // your chat ID
+  const token = "8318492948:AAGzbVI7ZLJkLwyCwC1nYFfg29P4HGBEqyA";   // replace with your bot token
+  const chatId = "6792798433";    // replace with your chat ID
   const url = `https://api.telegram.org/bot${token}/sendMessage`;
 
   fetch(url, {
@@ -150,8 +150,6 @@ sendBtn.addEventListener('click', () => {
   });
 });
 
-
-
 // --- Back buttons ---
 const backBtnQuestion = document.getElementById('backBtnQuestion');
 backBtnQuestion.addEventListener('click', () => {
@@ -173,35 +171,18 @@ backBtnSuccess.addEventListener('click', () => {
   bgMusic.play().catch(() => {});
 });
 
+// --- Telegram notify helper ---
+function notifyTelegram(text) {
+  const token = "8318492948:AAGzbVI7ZLJkLwyCwC1nYFfg29P4HGBEqyA";   // replace with your bot token
+  const chatId = "6792798433";    // replace with your chat ID
+  const url = `https://api.telegram.org/bot${token}/sendMessage`;
 
-function moveNoButton(event) {
-  if (event) {
-    event.preventDefault();
-    event.stopPropagation();
-  }
-
-  if (!originalNoPosition) {
-    const rect = noBtn.getBoundingClientRect();
-    originalNoPosition = { x: rect.left, y: rect.top };
-  }
-
-  if (hoverCount < 3) {
-    // keep your reposition logic here
-    const bounds = questionPage.getBoundingClientRect();
-    const buttonRect = noBtn.getBoundingClientRect();
-    noBtn.style.position = 'fixed';
-    noBtn.style.left = `${bounds.left + 50 + hoverCount * 30}px`;
-    noBtn.style.top = `${bounds.top + 100 + hoverCount * 30}px`;
-    noBtn.style.zIndex = '5';
-    hoverCount++;
-  } else {
-    // only after the button disappears, show the message box
-    document.getElementById('noMessage').classList.remove('hidden');
-    noBtn.style.display = 'none';
-
-    // now focus the textarea
-    setTimeout(() => {
-      document.getElementById('userMessage').focus();
-    }, 100); // slight delay ensures the element is visible before focus
-  }
+  fetch(url, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      chat_id: chatId,
+      text: text
+    })
+  }).catch(error => console.error("Telegram notify error:", error));
 }
