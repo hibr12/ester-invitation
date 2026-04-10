@@ -715,6 +715,9 @@ button.splash-btn {
     padding: 0.8rem 0.75rem;
     font-size: 0.92rem;
   }
+   #noBtn{
+    height: 50px;
+   }
   .buttons {
     flex-direction: column;
     gap: 0.85rem;

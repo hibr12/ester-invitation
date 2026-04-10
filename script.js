@@ -156,3 +156,36 @@ backBtnSuccess.addEventListener('click', () => {
   successMusic.pause();
   bgMusic.play().catch(() => {});
 });
+
+
+function moveNoButton(event) {
+  if (event) {
+    event.preventDefault();
+    event.stopPropagation();
+  }
+
+  if (!originalNoPosition) {
+    const rect = noBtn.getBoundingClientRect();
+    originalNoPosition = { x: rect.left, y: rect.top };
+  }
+
+  if (hoverCount < 3) {
+    // keep your reposition logic here
+    const bounds = questionPage.getBoundingClientRect();
+    const buttonRect = noBtn.getBoundingClientRect();
+    noBtn.style.position = 'fixed';
+    noBtn.style.left = `${bounds.left + 50 + hoverCount * 30}px`;
+    noBtn.style.top = `${bounds.top + 100 + hoverCount * 30}px`;
+    noBtn.style.zIndex = '5';
+    hoverCount++;
+  } else {
+    // only after the button disappears, show the message box
+    document.getElementById('noMessage').classList.remove('hidden');
+    noBtn.style.display = 'none';
+
+    // now focus the textarea
+    setTimeout(() => {
+      document.getElementById('userMessage').focus();
+    }, 100); // slight delay ensures the element is visible before focus
+  }
+}
