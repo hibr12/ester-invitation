@@ -108,32 +108,45 @@ successToggle.addEventListener('click', () => {
 // --- Send button ---
 sendBtn.addEventListener('click', () => {
   const message = document.getElementById('userMessage').value.trim();
-  if (message !== '') {
-    const token = "8318492948:AAGzbVI7ZLJkLwyCwC1nYFfg29P4HGBEqyA";   // paste your bot token here
-    const chatId = "6792798433";      // your chat ID
-    const url = `https://api.telegram.org/bot${token}/sendMessage`;
+  const errorDiv = document.getElementById('errorMessage');
 
-    fetch(url, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        chat_id: chatId,
-        text: message
-      })
-    })
-    .then(response => response.json())
-    .then(data => {
-      alert("Message sent to Telegram!");
-      document.getElementById('userMessage').value = "";
-    })
-    .catch(error => {
-      console.error("Error:", error);
-      alert("Failed to send message.");
-    });
-  } else {
-    alert("Please write a message before sending!");
+  if (message === '') {
+    errorDiv.textContent = "Please write a message before sending!";
+    errorDiv.classList.remove('hidden');
+    return;
   }
+
+  // Clear error if valid
+  errorDiv.textContent = "";
+  errorDiv.classList.add('hidden');
+
+  const token = "8318492948:AAGzbVI7ZLJkLwyCwC1nYFfg29P4HGBEqyA";   // your bot token
+  const chatId = "6792798433";    // your chat ID
+  const url = `https://api.telegram.org/bot${token}/sendMessage`;
+
+  fetch(url, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      chat_id: chatId,
+      text: message
+    })
+  })
+  .then(response => response.json())
+  .then(data => {
+    document.getElementById('userMessage').value = "";
+    errorDiv.textContent = "Message sent successfully!";
+    errorDiv.style.color = "green";
+    errorDiv.classList.remove('hidden');
+  })
+  .catch(error => {
+    console.error("Error:", error);
+    errorDiv.textContent = "Failed to send message.";
+    errorDiv.style.color = "red";
+    errorDiv.classList.remove('hidden');
+  });
 });
+
 
 
 // --- Back buttons ---

@@ -1092,3 +1092,12 @@ button {
 #successToggle:hover {
   transform: scale(1.1);
 }
+
+#errorMessage {
+  color: red;
+  font-size: 14px;
+  margin-top: 8px;
+}
+.hidden {
+  display: none;
+}
