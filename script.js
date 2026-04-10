@@ -16,6 +16,9 @@ const sendBtn = document.getElementById('sendBtn');
 // Audio + Toggles
 const bgMusic = document.getElementById('bgMusic');
 const successMusic = document.getElementById('successMusic');
+bgMusic.volume = 0.2;       // 20% of full volume
+successMusic.volume = 0.2;  // 20% of full volume
+
 const questionToggle = document.getElementById('questionToggle');
 const successToggle = document.getElementById('successToggle');
 
