@@ -10,25 +10,19 @@
   <div class="background"></div>
   <div class="overlay"></div>
 
+  <!-- Greeting Page -->
   <section id="greeting" class="page active">
     <div class="scene">
       <div class="bunny"></div>
       <div class="grass"></div>
       <div class="egg egg-one"></div>
       <div class="egg egg-two"></div>
-      <div class="egg egg-three"></div>]      <div class="flowers">
-        <div class="flower"></div>
-        <div class="flower"></div>
-        <div class="flower"></div>
-        <div class="flower"></div>
-        <div class="flower"></div>
-        <div class="flower"></div>
-        <div class="flower"></div>
-        <div class="flower"></div>
-        <div class="flower"></div>
-        <div class="flower"></div>
-        <div class="flower"></div>
-        <div class="flower"></div>
+      <div class="egg egg-three"></div>
+      <div class="flowers">
+        <div class="flower"></div><div class="flower"></div><div class="flower"></div>
+        <div class="flower"></div><div class="flower"></div><div class="flower"></div>
+        <div class="flower"></div><div class="flower"></div><div class="flower"></div>
+        <div class="flower"></div><div class="flower"></div><div class="flower"></div>
       </div>
       <div class="confetti">
         <span></span><span></span><span></span><span></span><span></span>
@@ -42,84 +36,57 @@
     </div>
   </section>
 
+  <!-- Question Page -->
   <section id="question" class="page">
-    <!-- Back button -->
-<button class="back-btn" id="backBtnQuestion">⬅ Back</button>
-
+    <button class="back-btn" id="backBtnQuestion">⬅ Back</button>
     <div class="content">
       <h1 class="fade-text gold-message-text">✝️ Happy Easter to you.<br>May the holiday be<br>a season of peace, love, and health for you. ✝️</h1>
-      <h1 class="fade-text question-text">What do you think if we have a coffee this week? &#9749;&#10084;&#65039;</h1>
+      <h1 class="fade-text question-text">What do you think if we have a coffee this week? ☕❤️</h1>
       <div class="buttons">
-        <button id="yesBtn" class="glow-btn splash-btn">Of ourse will have</button>
-        <button id="noBtn" class="playful-btn splash-btn">NO i can't</button>
+        <button id="yesBtn" class="glow-btn splash-btn">Of course will have</button>
+        <button id="noBtn" class="playful-btn splash-btn">NO I can't</button>
       </div>
       <div id="noMessage" class="hidden">
-        <p>Why are you chasing me? &#128516;</p>
+        <p>Why are you chasing me? 😆</p>
         <textarea id="userMessage" placeholder="Write your message here..."></textarea>
         <button id="sendBtn" class="glow-btn splash-btn">Send</button>
       </div>
     </div>
-    <button id="musicToggle" class="music-btn splash-btn">&#128266;</button>
+    <audio id="bgMusic" src="message.mp3" loop></audio>
+    <button id="questionToggle">&#128266;</button>
   </section>
 
+  <!-- Success Page -->
   <section id="success" class="page">
-    <!-- Back button -->
-<button class="back-btn" id="backBtnSuccess">⬅ Back</button>
-
-  <div class="scene success-scene">
-    <div class="egg egg-one"></div>
-    <div class="egg egg-two"></div>
-    <div class="egg egg-three"></div>
-
-    <!-- Keep the animated falling hearts -->
-    <div class="love-rain hearts">
-      <span></span><span></span><span></span><span></span><span></span><span></span>
-      <span></span><span></span><span></span><span></span><span></span><span></span>
-      <span></span><span></span><span></span><span></span><span></span><span></span>
+    <button class="back-btn" id="backBtnSuccess">⬅ Back</button>
+    <div class="scene success-scene">
+      <div class="egg egg-one"></div>
+      <div class="egg egg-two"></div>
+      <div class="egg egg-three"></div>
+      <div class="love-rain hearts">
+        <span></span><span></span><span></span><span></span><span></span><span></span>
+      </div>
+      <div class="fixed-hearts">
+        <div class="heart"></div><div class="heart"></div><div class="heart"></div>
+      </div>
+      <div class="corner-heart left-heart"></div>
+      <div class="corner-heart right-heart"></div>
+      <div class="floating-flowers">
+        <span></span><span></span><span></span><span></span><span></span>
+      </div>
+      <div class="confetti">
+        <span></span><span></span><span></span><span></span><span></span>
+      </div>
     </div>
-
-    <!-- Fixed bright red hearts -->
-    <div class="fixed-hearts">
-      <div class="heart"></div>
-      <div class="heart"></div>
-      <div class="heart"></div>
+    <div class="content">
+      <h1 class="fade-text">You just made my day ❤️</h1>
+      <h1 class="fade-text">Thanks Betsha ❤️</h1>
+      <h2 class="fade-text">I am ready to meet you ☕</h2>
+      <h2 class="fade-text">Happy Easter!!! ✝️</h2>
     </div>
-     <!-- Big heart top left -->
-<div class="corner-heart left-heart"></div>
-
-<!-- Big heart top right -->
-<div class="corner-heart right-heart"></div>
-
-    <!-- Floating red flowers (replace old love-rain red-flowers) -->
-    <div class="floating-flowers">
-      <span></span><span></span><span></span><span></span><span></span>
-      <span></span><span></span><span></span><span></span><span></span>
-      <span></span><span></span><span></span><span></span><span></span>
-      <span></span><span></span><span></span><span></span><span></span>
-      <span></span><span></span><span></span><span></span><span></span>
-      <span></span><span></span><span></span><span></span><span></span>
-      <span></span><span></span><span></span><span></span><span></span>
-      <span></span><span></span><span></span><span></span><span></span>
-    </div>
-
-    <div class="confetti">
-      <span></span><span></span><span></span><span></span><span></span>
-    </div>
-  </div>
-  <div class="content">
-    <h1 class="fade-text">You just made my day ❤️</h1>
-    <h1 class="fade-text">thanks betsha ❤️</h1>
-    <h1 class="fade-text">i have respect for you ❤️</h1>
-    <h2 class="fade-text">i am ready to meet you ☕</h2>
-    <h2 class="fade-text">just tell me when you feel comfortable chase the no button at the back and you will get the message bar</h2>
-    <br>
-    <h1 class="fade-text">happy Easter!!! ✝️</h1>
-  </div>
-</section>
-
-
-  <audio id="bgMusic" src="message.mp3" loop></audio>
-  <audio id="successMusic" src="success2.mp3" loop></audio>
+    <audio id="successMusic" src="success2.mp3" loop></audio>
+    <button id="successToggle">&#128266;</button>
+  </section>
 
   <script src="script.js"></script>
 </body>

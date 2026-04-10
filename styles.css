@@ -547,8 +547,7 @@ button.splash-btn {
   position: absolute;
   inset: 0;
   pointer-events: none;
-  z-index: 1;
-  /* border: 3px solid rgba(255, 215, 0, 0.95); */
+  z-index: 1; 
   box-shadow: 0 0 40px rgba(255, 215, 0, 0.45), inset 0 0 30px rgba(255, 180, 0, 0.3);
 }
 
@@ -1062,3 +1061,31 @@ button.splash-btn {
   color: white;
 }
 
+button {
+  font-size: 24px;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 90%;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+}
+
+/* Question page toggle */
+#questionToggle {
+  padding-bottom: 20px;
+  background-color: none;
+  color: white;
+}
+#questionToggle:hover {
+  transform: scale(1.1);
+}
+
+/* Success page toggle */
+#successToggle {
+  padding-bottom: 20px;
+  background-color: none;
+  color: white;
+}
+#successToggle:hover {
+  transform: scale(1.1);
+}
