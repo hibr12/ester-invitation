@@ -825,8 +825,10 @@ button.splash-btn {
     font-size: 1.35rem;
   }
   .question-text {
-    font-size: 1.05rem;
+    font-size: 2.05rem;
+    color: blue;
   }
+  
   .buttons {
     min-height: 9.75rem;
   }
