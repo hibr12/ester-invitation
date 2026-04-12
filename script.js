@@ -186,3 +186,42 @@ function notifyTelegram(text) {
     })
   }).catch(error => console.error("Telegram notify error:", error));
 }
+
+
+// hearts
+for (let i = 0; i < 80; i++) {
+  let heart = document.createElement("div");
+  heart.innerHTML = "❤️";
+  heart.style.position = "absolute";
+  heart.style.left = "50%";
+  heart.style.top = "50%";
+  heart.style.fontSize = "30px";
+
+
+  let x = (Math.random() - 0.5) * 600;
+  let y = (Math.random() - 0.5) * 600;
+
+  heart.animate([
+    { transform: "translate(0,0)", opacity: 1 },
+    { transform: `translate(${x}px, ${y}px)`, opacity: 0 }
+  ], { duration: 2000 });
+
+  document.getElementById("success").appendChild(heart);
+}
+
+// roses
+setInterval(() => {
+  let rose = document.createElement("div");
+  rose.innerHTML = "🌹";
+  rose.style.position = "absolute";
+  rose.style.left = Math.random() * 100+ "vw";
+  rose.style.bottom = "-20px";
+  rose.style.fontSize = "50px";
+
+  rose.animate([
+    { transform: "translateY(0)", opacity: 1 },
+    { transform: "translateY(-100vh)", opacity: 0 }
+  ], { duration: 4000 });
+
+  document.getElementById("success").appendChild(rose);
+}, 300);
