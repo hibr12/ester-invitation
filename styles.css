@@ -103,7 +103,11 @@ p {
 .page.active .fade-text {
   opacity: 1;
 }
-
+h3{
+  color: #fff4c5;
+  font-size: 1.1rem;
+  margin-top: 1.25rem;
+}
 #special {
   padding-top: 20px;
 }
